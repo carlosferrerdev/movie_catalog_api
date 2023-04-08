@@ -15,8 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_08_184611) do
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "movies", id: false, force: :cascade do |t|
-    t.uuid "id"
+  create_table "movies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.string "genre"
     t.integer "year"

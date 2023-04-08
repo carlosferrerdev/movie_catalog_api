@@ -6,7 +6,6 @@ class MovieImporter
     CSV.foreach(file_path, headers: true) do |row|
       # Cria um novo registro de filme com base na linha CSV
       movie = Movie.new(
-        show_id: row['show_id'],
         title: row['title'],
         genre: row['type'],
         year: row['release_year'],
