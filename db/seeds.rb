@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+require_relative '../app/services/movie_importer'
+
+csv_file_path = Rails.root.join('db', 'netflix_titles.csv')
+
+puts "Importing movies from #{csv_file_path}"
+
+MovieImporter.import(csv_file_path)
+
+puts "Movies imported successfully!"

@@ -2,19 +2,21 @@ require 'csv'
 
 class MovieImporter
   def self.import(file_path)
-    CSV.foreach(file_path, headers: true, col_sep: ',') do |row|
-      movie_params = row.to_h.symbolize_keys
+    # Lê o arquivo CSV e itera pelas linhas
+    CSV.foreach(file_path, headers: true) do |row|
+      # Cria um novo registro de filme com base na linha CSV
+      movie = Movie.new(
+        show_id: row['show_id'],
+        title: row['title'],
+        genre: row['type'],
+        year: row['release_year'],
+        country: row['country'],
+        published_at: row['date_added'],
+        description: row['description']
+      )
 
-      # Verifica se o filme já existe no banco de dados pelo ID
-      movie = Movie.find_or_initialize_by(id: movie_params[:id])
-
-      # Se o filme não existe, cria um novo registro
-      if movie.nil?
-        movie = Movie.new(movie_params)
-        unless movie.save
-        puts "Erro ao importar o filme #{movie.errors.full_messages}"
-        end
-      end
+      # Salva o registro de filme no banco de dados
+      movie.save!
     end
   end
 end
