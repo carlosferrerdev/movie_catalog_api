@@ -1,5 +1,6 @@
 <h1>Movie Catalog API</h1>
 <p>Uma API de Filmes - Uma API RESTful para gerenciamento de informações de filmes.</p>
+<p>A API lê os dados de um arquivo no formato CSV, importa todas as informações para um banco de dados, processa as informações e disponibiliza os dados em um arquivo JSON.</p>
 <h2>Tecnologias utilizadas</h2>
 <ul>
   <li>Ruby 3.2.0</li>
