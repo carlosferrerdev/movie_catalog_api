@@ -102,7 +102,7 @@ bundle install
 </pre>
 <p>Configure o banco de dados:</p>
 <pre>
-rails db:create db:migrate
+rails db:create db:migrate db:seed
 </pre>
 <p>Inicie o servidor:</p>
 <pre>
