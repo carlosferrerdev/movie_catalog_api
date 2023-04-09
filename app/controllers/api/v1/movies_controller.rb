@@ -4,7 +4,7 @@ module Api
       before_action :set_movie, only: [:show, :update, :destroy]
 
       def index
-        @movies = Movie.all
+        @movies = Movie.distinct
         apply_filters
         render json: @movies.order(:year).as_json(except: [:created_at, :updated_at])
       end
@@ -32,6 +32,9 @@ module Api
         @movies = @movies.where('year = ?', params[:year]) if params[:year]
         @movies = @movies.where('genre ILIKE ?', "%#{params[:genre]}%") if params[:genre]
         @movies = @movies.where('country ILIKE ?', "%#{params[:country]}%") if params[:country]
+        @movies = @movies.where('published_at = ?', params[:published_at]) if params[:published_at]
+        @movies = @movies.where('title ILIKE ?', "%#{params[:title]}%") if params[:title]
+        @movies = @movies.where('description ILIKE ?', "%#{params[:description]}%") if params[:description]
       end
     end
   end

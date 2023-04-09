@@ -53,38 +53,41 @@
 <pre>
 [
   {
-    "id": "840c7cfc-cd1f-4094-9651-688457d97fa4",
-    "title": "Star Wars - A New Hope",
-    "genre": "Adventure",
-    "year": 1977,
-    "country": "United States",
-    "published_at": "2015-01-01"
+    "id": "0bb32f97-c94d-410e-9949-9050603ee1b9",
+    "title": "14 Blades",
+    "genre": "Movie",
+    "year": 2010,
+    "country": "Hong Kong, China, Singapore",
+    "published_at": "2019-04-03",
+    "description": "In the age of the Ming Dynasty, Quinglong is the best of the Jinyiwei, an elite assassin squad made up of highly trained former street urchins. When evil eunuch Jia unseats the emperor, Quinglong is called to action but is quickly betrayed."
   },
   {
-    "id": "840c7cfc-cd1f-4094-9651-88465d971hf9",
-    "title": "The Godfather - Part II",
-    "genre": "Drama",
-    "year": 1975,
+    "id": "2a7b4eb4-c7ae-497a-b492-4c326541b53d",
+    "title": "21 & Over",
+    "genre": "Movie",
+    "year": 2013,
     "country": "United States",
-    "published_at": "2023-04-09"
+    "published_at": "2019-04-16",
+    "description": "Jeff's straight-and-narrow life changes abruptly when his buddies take him out for a birthday bash – the night before a crucial med school interview."
   }
 ]
 </pre>
 <p>Exemplo de uso</p>
 <p>Requisição</p>
 <pre>
-GET /api/v1/movies?year=2001&genre=Fantasy&country=United%20States
+GET /api/v1/movies?year=2013&genre=Movie&country=United%20States
 </pre>
 <p>Resposta</p>
 <pre>
 [
   {
-    "id": "3fce0c80-df4a-4e33-bd2f-d18aa0b5a6c9",
-    "title": "The Lord of the Rings: The Fellowship of the Ring",
-    "genre": "Fantasy",
-    "year": 2001,
+    "id": "4b9f60c2-ad71-4662-b278-4fc3bde9f44b",
+    "title": "20 Feet From Stardom",
+    "genre": "Movie",
+    "year": 2013,
     "country": "United States",
-    "published_at": "2020-10-02"
+    "published_at": "2018-09-22",
+    "description": "Winner of the 2014 Academy Award for Best Documentary Feature, this film takes a look at the world of backup vocalists and the legends they support."
   }
 ]
 </pre>
@@ -115,3 +118,6 @@ rails server
 <pre>
 bundle exec rspec
 </pre>
+<h2>Documentação da API</h2>
+Gerada no Postman.
+<i>https://documenter.getpostman.com/view/16315917/2s93XsYRf4</i>
