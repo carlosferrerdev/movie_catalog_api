@@ -9,9 +9,9 @@ module Api
         file = params[:file]
         if file.present?
           MovieImporter.import(file)
-          render json: { message: 'Movies imported successfully' }, status: :created
+          render json: { message: 'Filmes importados com sucesso' }, status: :created
         else
-          render json: { message: 'File not provided' }, status: :unprocessable_entity
+          render json: { message: 'Arquivo não fornecido' }, status: :unprocessable_entity
         end
       end
 
