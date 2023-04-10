@@ -28,7 +28,7 @@
   </thead>
   <tbody>
     <tr>
-      <td>Title</td>
+      <td>title</td>
       <td>String</td>
       <td>Filtra as obras pelo título da obra</td>
     </tr>
