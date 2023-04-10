@@ -1,12 +1,28 @@
+require 'csv'
+
 module Api
   module V1
     class MoviesController < ApplicationController
       before_action :set_movie, only: [:show, :update, :destroy]
 
+      def import
+        if params[:file].present?
+          filepath = params[:file].path
+          CSV.foreach(filepath, headers: true) do |row|
+            movie_attributes = row.to_hash.slice("title", "genre", "year", "country", "published_at", "description")
+            Movie.create(movie_attributes)
+          end
+          render json: { message: "Filmes importados com sucesso" }, status: :created
+        else
+          render json: { message: "Arquivo não fornecido" }, status: :unprocessable_entity
+        end
+      end
+
       def index
         @movies = Movie.distinct
         apply_filters
-        render json: @movies.order(:year).as_json(except: [:created_at, :updated_at])
+        @movies = @movies.order(:year)
+        render json: @movies.as_json(except: [:created_at, :updated_at])
       end
 
       def create
