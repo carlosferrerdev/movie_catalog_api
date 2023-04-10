@@ -28,19 +28,29 @@
   </thead>
   <tbody>
     <tr>
+      <td>Title</td>
+      <td>String</td>
+      <td>Filtra as obras pelo título da obra</td>
+    </tr>
+    <tr>
       <td>year</td>
       <td>Integer</td>
-      <td>Filtra os filmes pelo ano de lançamento</td>
+      <td>Filtra as obras pelo ano de lançamento</td>
     </tr>
     <tr>
       <td>genre</td>
       <td>String</td>
-      <td>Filtra os filmes pelo gênero</td>
+      <td>Filtra as obras pelo gênero</td>
     </tr>
     <tr>
       <td>country</td>
       <td>String</td>
-      <td>Filtra os filmes pelo país de origem</td>
+      <td>Filtra as obras pelo país de origem</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>String</td>
+      <td>Filtra as obras por sua descrição</td>
     </tr>
     <tr>
       <td>published_at</td>
