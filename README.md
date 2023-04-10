@@ -15,6 +15,70 @@
   <li>Ordenação de filmes por ano</li>
 </ul>
 <h2>Endpoints</h2>
+<h1>Endpoint: Importar filmes de um arquivo CSV</h1>
+<p><strong>Descrição:</strong> Este endpoint permite importar filmes de um arquivo CSV para a base de dados do catálogo de filmes.</p>
+<p><strong>Método HTTP:</strong> POST</p>
+<p><strong>URL:</strong> /api/v1/movies/import</p>
+<h2>Parâmetros</h2>
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>Tipo</th>
+        <th>Descrição</th>
+        <th>Obrigatório</th>
+    </tr>
+    <tr>
+        <td>file</td>
+        <td>File</td>
+        <td>Arquivo CSV contendo os dados dos filmes</td>
+        <td>Sim</td>
+    </tr>
+</table>
+
+<h2>Formato do arquivo CSV</h2>
+<p>O arquivo CSV deve ter as seguintes colunas:</p>
+<ul>
+    <li><code>title</code>: Título do filme (string)</li>
+    <li><code>genre</code>: Gênero do filme (string)</li>
+    <li><code>year</code>: Ano de lançamento do filme (integer)</li>
+    <li><code>country</code>: País de origem do filme (string)</li>
+    <li><code>published_at</code>: Data de publicação do filme (string, formato: AAAA-MM-DD)</li>
+    <li><code>description</code>: Descrição do filme (string)</li>
+</ul>
+
+<h2>Resposta</h2>
+<h3>Em caso de sucesso:</h3>
+<p><strong>Código HTTP:</strong> 201 Created</p>
+<p><strong>Exemplo de corpo da resposta:</strong></p>
+<pre>
+<h3>Em caso de falha (por exemplo, arquivo não fornecido):</h3>
+<p><strong>Código HTTP:</strong> 422 Unprocessable Entity</p>
+<p><strong>Exemplo de corpo da resposta:</strong></p>
+<pre>
+{
+"message": "Arquivo não fornecido"
+}
+</pre>
+<h2>Exemplo de uso</h2>
+<h3>Usando cURL:</h3>
+<pre>
+curl -X POST -H "Content-Type: multipart/form-data" -F "file=@/path/to/your/csv/file.csv" http://localhost:3000/api/v1/movies/import
+</pre>
+<h3>Usando Postman:</h3>
+<ol>
+    <li>Selecione o método POST.</li>
+    <li>Insira a URL <code>http://localhost:3000/api/v1/movies/import</code>.</li>
+    <li>Selecione a aba "Body".</li>
+    <li>Escolha a opção "form-data".</li>
+    <li>Insira a chave <code>file</code>, selecione o tipo "File" e escolha o arquivo CSV</li>
+    <li>Envie a solicitação clicando no botão "Send".</li>
+</ol>
+
+
+
+
+
+
 <h3>Filmes</h3>
 <p><strong>GET /api/v1/movies</strong></p>
 <p>Recupera uma lista de filmes com suporte à filtragem e ordenação.</p>
