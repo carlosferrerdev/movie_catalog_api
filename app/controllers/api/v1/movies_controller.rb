@@ -6,15 +6,12 @@ module Api
       before_action :set_movie, only: [:show, :update, :destroy]
 
       def import
-        if params[:file].present?
-          filepath = params[:file].path
-          CSV.foreach(filepath, headers: true) do |row|
-            movie_attributes = row.to_hash.slice("title", "genre", "year", "country", "published_at", "description")
-            Movie.create(movie_attributes)
-          end
-          render json: { message: "Filmes importados com sucesso" }, status: :created
+        file = params[:file]
+        if file.present?
+          MovieImporter.import(file)
+          render json: { message: 'Movies imported successfully' }, status: :created
         else
-          render json: { message: "Arquivo não fornecido" }, status: :unprocessable_entity
+          render json: { message: 'File not provided' }, status: :unprocessable_entity
         end
       end
 

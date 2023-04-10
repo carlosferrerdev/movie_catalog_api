@@ -1,9 +1,9 @@
 require 'csv'
 
 class MovieImporter
-  def self.import(file_path)
+  def self.import(file)
     # Lê o arquivo CSV e itera pelas linhas
-    CSV.foreach(file_path, headers: true) do |row|
+    CSV.new(file.read, headers: true).each do |row|
       # Cria um novo registro de filme com base na linha CSV
       movie = Movie.new(
         title: row['title'],

@@ -8,10 +8,13 @@
 
 require_relative '../app/services/movie_importer'
 
-csv_file_path = Rails.root.join('db', 'netflix_titles.csv')
+def import_movies_from_file(file_path)
+  puts "Importing movies from #{file_path}"
 
-puts "Importing movies from #{csv_file_path}"
+  MovieImporter.import(file_path)
 
-MovieImporter.import(csv_file_path)
+  puts "Movies imported successfully!"
+end
 
-puts "Movies imported successfully!"
+# Example usage:
+import_movies_from_file(Rails.root.join('db', 'netflix_titles.csv'))
