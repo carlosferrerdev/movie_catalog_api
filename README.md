@@ -7,7 +7,6 @@
   <li>Ruby on Rails 7.0.4.3</li>
   <li>PostgreSQL 14.7</li>
 </ul>
-
 <h2>Recursos</h2>
 <ul>
   <li>Listagem de filmes</li>
@@ -15,11 +14,11 @@
   <li>Ordenação de filmes por ano</li>
 </ul>
 <h2>Endpoints</h2>
-<h1>Endpoint: Importar filmes de um arquivo CSV</h1>
+<h3>Endpoint: Importar filmes de um arquivo CSV</h3>
 <p><strong>Descrição:</strong> Este endpoint permite importar filmes de um arquivo CSV para a base de dados do catálogo de filmes.</p>
 <p><strong>Método HTTP:</strong> POST</p>
 <p><strong>URL:</strong> /api/v1/movies/import</p>
-<h2>Parâmetros</h2>
+<h4>Parâmetros</h4>
 <table>
     <tr>
         <th>Nome</th>
@@ -34,8 +33,7 @@
         <td>Sim</td>
     </tr>
 </table>
-
-<h2>Formato do arquivo CSV</h2>
+<h4>Formato do arquivo CSV</h4>
 <p>O arquivo CSV deve ter as seguintes colunas:</p>
 <ul>
     <li><code>title</code>: Título do filme (string)</li>
@@ -45,26 +43,29 @@
     <li><code>published_at</code>: Data de publicação do filme (string, formato: AAAA-MM-DD)</li>
     <li><code>description</code>: Descrição do filme (string)</li>
 </ul>
-
-<h2>Resposta</h2>
-<h3>Em caso de sucesso:</h3>
+<h4>Resposta</h4>
+<h5>Em caso de sucesso:</h5>
 <p><strong>Código HTTP:</strong> 201 Created</p>
 <p><strong>Exemplo de corpo da resposta:</strong></p>
 <pre>
-<h3>Em caso de falha (por exemplo, arquivo não fornecido):</h3>
+{
+  "message": "Filmes importados com sucesso"
+}
+</pre>
+<h5>Em caso de falha (por exemplo, arquivo não fornecido):</h5>
 <p><strong>Código HTTP:</strong> 422 Unprocessable Entity</p>
 <p><strong>Exemplo de corpo da resposta:</strong></p>
 <pre>
 {
-"message": "Arquivo não fornecido"
+  "message": "Arquivo não fornecido"
 }
 </pre>
-<h2>Exemplo de uso</h2>
-<h3>Usando cURL:</h3>
+<h4>Exemplo de uso</h4>
+<h5>Usando cURL:</h5>
 <pre>
 curl -X POST -H "Content-Type: multipart/form-data" -F "file=@/path/to/your/csv/file.csv" http://localhost:3000/api/v1/movies/import
 </pre>
-<h3>Usando Postman:</h3>
+<h5>Usando Postman:</h5>
 <ol>
     <li>Selecione o método POST.</li>
     <li>Insira a URL <code>http://localhost:3000/api/v1/movies/import</code>.</li>
@@ -73,12 +74,6 @@ curl -X POST -H "Content-Type: multipart/form-data" -F "file=@/path/to/your/csv/
     <li>Insira a chave <code>file</code>, selecione o tipo "File" e escolha o arquivo CSV</li>
     <li>Envie a solicitação clicando no botão "Send".</li>
 </ol>
-
-
-
-
-
-
 <h3>Filmes</h3>
 <p><strong>GET /api/v1/movies</strong></p>
 <p>Recupera uma lista de filmes com suporte à filtragem e ordenação.</p>
@@ -147,7 +142,8 @@ curl -X POST -H "Content-Type: multipart/form-data" -F "file=@/path/to/your/csv/
 ]
 </pre>
 <p>Exemplo de uso</p>
-<p>Requisição</p>
+<pRequisição</p>
+
 <pre>
 GET /api/v1/movies?year=2013&genre=Movie&country=United%20States
 </pre>
@@ -180,7 +176,7 @@ bundle install
 </pre>
 <p>Configure o banco de dados:</p>
 <pre>
-rails db:create db:migrate db:seed
+rails db:create db:migrate
 </pre>
 <p>Inicie o servidor:</p>
 <pre>
@@ -193,5 +189,5 @@ rails server
 bundle exec rspec
 </pre>
 <h2>Documentação da API</h2>
-Gerada no Postman.
-<i>https://documenter.getpostman.com/view/16315917/2s93XsYRf4</i>
+<p>Gerada no Postman.</p>
+<i>https://documenter.getpostman.com/view/16315917/2s93Xu15Pi</i>
