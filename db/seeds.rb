@@ -15,6 +15,3 @@ def import_movies_from_file(file_path)
 
   puts "Movies imported successfully!"
 end
-
-# Example usage:
-import_movies_from_file(Rails.root.join('db', 'netflix_titles.csv'))
