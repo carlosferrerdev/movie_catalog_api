@@ -8,8 +8,8 @@ module Api
       def import
         file = params[:file]
         if file.present?
-          MovieImporter.import(file)
-          render json: { message: 'Filmes importados com sucesso' }, status: :created
+          import_message = MovieImporter.import(file)
+          render json: { message: 'Filmes importados com sucesso', import_message: import_message }, status: :created
         else
           render json: { message: 'Arquivo não fornecido' }, status: :unprocessable_entity
         end
@@ -19,7 +19,7 @@ module Api
         @movies = Movie.distinct
         apply_filters
         @movies = @movies.order(:year)
-        render json: @movies.as_json(except: [:created_at, :updated_at])
+        render json: @movies.as_json(only: [:title, :genre, :year, :country, :published_at, :description])
       end
 
       def create
