@@ -1,14 +1,9 @@
-require 'csv'
-
-class MovieImporter
-  def self.import(file)
-    # Inicializa o contador de filmes importados e ignorados
+def self.import(file)
+  begin
     imported_count = 0
     ignored_count = 0
 
-    # Lê o arquivo CSV e itera pelas linhas
     CSV.new(file.read, headers: true).each do |row|
-      # Cria um novo registro de filme com base na linha CSV
       movie = Movie.new(
         title: row['title'],
         genre: row['type'],
@@ -18,22 +13,24 @@ class MovieImporter
         description: row['description']
       )
 
-      # Verifica se o filme já existe no banco de dados
       existing_movie = Movie.find_by(title: movie.title, year: movie.year)
 
       if existing_movie.nil?
-        # Salva o registro de filme no banco de dados
         if movie.save
-          # Incrementa o contador de filmes importados
           imported_count += 1
+        else
+          # Se houver um erro ao salvar o filme, incrementa o contador de erro e continua a próxima iteração
+          ignored_count += 1
         end
       else
-        # Incrementa o contador de filmes ignorados
         ignored_count += 1
       end
     end
 
-    # Retorna uma mensagem com a contagem de filmes importados e ignorados
     "Filmes importados: #{imported_count}, Filmes ignorados (duplicados): #{ignored_count}"
+
+  rescue StandardError => e
+    # Se ocorrer um erro, retorna uma string contendo a mensagem de erro
+    "Erro na importação: #{e.message}"
   end
 end
