@@ -42,12 +42,15 @@ module Api
       end
 
       def apply_filters
-        @movies = @movies.where('year = ?', params[:year]) if params[:year]
-        @movies = @movies.where('genre ILIKE ?', "%#{params[:genre]}%") if params[:genre]
-        @movies = @movies.where('country ILIKE ?', "%#{params[:country]}%") if params[:country]
-        @movies = @movies.where('published_at = ?', params[:published_at]) if params[:published_at]
-        @movies = @movies.where('title ILIKE ?', "%#{params[:title]}%") if params[:title]
-        @movies = @movies.where('description ILIKE ?', "%#{params[:description]}%") if params[:description]
+        filters = %i[year genre country published_at title description]
+
+        filters.each do |filter|
+          if filter == :year || filter == :published_at
+            @movies = @movies.where("#{filter} = ?", params[filter]) if params[filter]
+          else
+            @movies = @movies.where("#{filter} ILIKE ?", "%#{params[filter]}%") if params[filter]
+          end
+        end
       end
     end
   end
