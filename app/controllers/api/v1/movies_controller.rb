@@ -19,7 +19,7 @@ module Api
         @movies = Movie.distinct
         apply_filters
         @movies = @movies.order(:year)
-        render json: @movies.as_json(only: [:title, :genre, :year, :country, :published_at, :description])
+        render json: @movies
       end
 
       def create
