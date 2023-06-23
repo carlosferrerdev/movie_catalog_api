@@ -37,10 +37,10 @@
 <p>O arquivo CSV deve ter as seguintes colunas:</p>
 <ul>
     <li><code>title</code>: Título do filme (string)</li>
-    <li><code>genre</code>: Gênero do filme (string)</li>
-    <li><code>year</code>: Ano de lançamento do filme (integer)</li>
+    <li><code>type</code>: Gênero do filme (string)</li>
+    <li><code>release_year</code>: Ano de lançamento do filme (integer)</li>
     <li><code>country</code>: País de origem do filme (string)</li>
-    <li><code>published_at</code>: Data de publicação do filme (string, formato: AAAA-MM-DD)</li>
+    <li><code>date_added</code>: Data de publicação do filme (string, formato: AAAA-MM-DD)</li>
     <li><code>description</code>: Descrição do filme (string)</li>
 </ul>
 <h4>Resposta</h4>
@@ -92,12 +92,12 @@ curl -X POST -H "Content-Type: multipart/form-data" -F "file=@/path/to/your/csv/
       <td>Filtra as obras pelo título da obra</td>
     </tr>
     <tr>
-      <td>year</td>
+      <td>release_year</td>
       <td>Integer</td>
       <td>Filtra as obras pelo ano de lançamento</td>
     </tr>
     <tr>
-      <td>genre</td>
+      <td>type</td>
       <td>String</td>
       <td>Filtra as obras pelo gênero</td>
     </tr>
@@ -112,7 +112,7 @@ curl -X POST -H "Content-Type: multipart/form-data" -F "file=@/path/to/your/csv/
       <td>Filtra as obras por sua descrição</td>
     </tr>
     <tr>
-      <td>published_at</td>
+      <td>date_added</td>
       <td>Date</td>
       <td>Filtra os filmes pela data de publicação (YYYY-MM-DD)</td>
     </tr>

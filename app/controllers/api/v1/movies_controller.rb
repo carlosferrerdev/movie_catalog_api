@@ -3,7 +3,6 @@ require 'csv'
 module Api
   module V1
     class MoviesController < ApplicationController
-      before_action :set_movie, only: [:show, :update, :destroy]
 
       def import
         file = params[:file]
