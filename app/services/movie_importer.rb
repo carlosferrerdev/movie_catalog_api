@@ -3,6 +3,7 @@ class MovieImporter
     begin
       imported_count = 0
       ignored_count = 0
+      errors = []
 
       CSV.new(file.read, headers: true).each do |row|
         movie = Movie.new(
@@ -22,17 +23,19 @@ class MovieImporter
           else
             # Se houver um erro ao salvar o filme, incrementa o contador de erro e continua a próxima iteração
             ignored_count += 1
+            errors << { title: movie.title, errors: movie.errors.full_messages }
           end
         else
           ignored_count += 1
+          errors << { title: movie.title, error: "Movie already exists" }
         end
       end
 
-      "Filmes importados: #{imported_count}, Filmes ignorados (duplicados): #{ignored_count}"
+      { message: "Filmes importados: #{imported_count}, Filmes ignorados (duplicados): #{ignored_count}", errors: errors }
 
     rescue StandardError => e
       # Se ocorrer um erro, retorna uma string contendo a mensagem de erro
-      "Erro na importação: #{e.message}"
+      { message: "Erro na importação: #{e.message}", errors: errors }
     end
   end
 end
